@@ -3,6 +3,10 @@
 
 #import "@preview/numbly:0.1.0": numbly
 
+#set text(font: "Source Code Pro")
+
+
+
 #show: metropolis-theme.with(
   aspect-ratio: "16-9",
   footer: self => self.info.institution,
@@ -13,7 +17,18 @@
     institution: [University of Wisconsin-Madison],
     logo: emoji.school,
   ),
+  config-methods(
+  init: (self: none, body) => {
+    set text(fill: self.colors.neutral-darkest, size: 25pt, font: "Source Sans 3")
+    show footnote.entry: set text(size: .6em)
+    show strong: self.methods.alert.with(self: self)
+    show heading.where(level: self.slide-level + 1): set text(1.4em)
+
+    body
+  },
 )
+)
+
 
 #set heading(numbering: numbly("{1}.", "{1}.{2}", none))
 
